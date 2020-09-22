@@ -68,7 +68,7 @@
     <div class="carregamento-geral container-fluid" v-show="loading">
       <div class="carregando-animacao" >
         <div class="row d-flex justify-content-center">
-          <div class="carregando-animacao">
+          <div class="carregando-animacao ml-4">
             <div class="hollow-dots-spinner" :style="spinnerStyle">
               <div class="dot"></div>
               <div class="dot"></div>
@@ -106,11 +106,13 @@ export default {
 
   methods: {
     gerarRelatorio() {
-
-      console.log(this.relatorio)
-
       this.$http.post('http://localhost:3000/relatorio/excel', this.relatorio, {responseType: 'arraybuffer'})
         .then((response) => {
+
+          let dataInicialFormatada = `${this.relatorio.dataInicial.split('-')[2]}_${this.relatorio.dataInicial.split('-')[1]}`
+          let dataFinalFormatada = `${this.relatorio.dataFinal.split('-')[2]}_${this.relatorio.dataFinal.split('-')[1]}`
+          this.name = `Relatorio Presença ${dataInicialFormatada} a ${dataFinalFormatada}`
+
           let blob = new Blob([response.data], {type: response.headers.get('content-type')});
           let link = document.createElement('a');
           link.href = window.URL.createObjectURL(blob);
@@ -159,7 +161,7 @@ body {
   margin: 0;
 }
 .carregando-animacao{
-  height: 100px;
+  height: 60px;
   position: relative;
   margin-top: -50px;
   top:50%
@@ -169,9 +171,6 @@ body {
   color: #00102f;
   font-size: 25px;
 }
-
-
-
 
 .hollow-dots-spinner, .hollow-dots-spinner * {
   box-sizing: border-box;
