@@ -81,6 +81,17 @@
         </div>
       </div>
     </div>
+    <hr>
+    <div class="row textFooter">
+      <div class="col-xl-6 col-sm-6 col-md-6 col-lg-4 text-center">
+        <p><strong>© Copyright 2020</strong>
+        </p>
+      </div>
+      <div class="col-xl-6 col-sm-4 col-md-4 col-lg-4 text-center">
+        <p><strong>Developed by: Henrique Mariano</strong>
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
